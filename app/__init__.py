@@ -15,7 +15,6 @@ def create_app():
     db.init_app(app)
 
     ## Chamada da view
-    
     ## app.register_blueprint(bp_categories)
 
     return app
