@@ -1,1 +1,4 @@
-# fast-food-simulator
+# Fast Food Simulator
+
+## Descrição 
+
