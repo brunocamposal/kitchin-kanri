@@ -1,4 +1,4 @@
-# Fast Food Simulator
+# Kitchin Kanri
 
 ## Descrição 
 
