@@ -1,6 +1,7 @@
 from flask import Flask
 from app.models import db
 from environs import Env
+from flask_migrate import Migrate
 
 
 def create_app():
@@ -13,6 +14,8 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = env.str('SQLALCHEMY_DATABASE_URI')
 
     db.init_app(app)
+
+    Migrate(app, db)
 
     ## Chamada da view
     ## app.register_blueprint(bp_categories)
