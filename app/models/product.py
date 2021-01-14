@@ -1,4 +1,5 @@
 from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from marshmallow import fields
 
@@ -18,14 +19,3 @@ class Product(db.Model):
 
     orders = db.relationship(
         "Order", secondary=product_list, back_populates="products")
-
-
-class ProductSchema(ma.SQLAlchemySchema):
-    class Meta:
-        model = Product
-
-    id = ma.auto_field()
-    name = ma.auto_field()
-    price = ma.auto_field()
-    description = ma.auto_field()
-    orders = fields.Nested(OrderSchema, many=True)
