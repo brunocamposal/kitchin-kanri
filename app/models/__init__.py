@@ -1,7 +1,23 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 ma = Marshmallow()
+mg = Migrate()
 
 # Tabelas
+
+
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.String(120), unique=False, nullable=False)
+    date = db.Column(db.DateTime, unique=False, nullable=True)
+    payment_method = db.Column(db.String(120), unique=False, nullable=False)
+    total_price = db.Column(db.Float, unique=False, nullable=False)
+
+    products = db.relationship(
+        "Product", secondary=product_list, back_populates='orders')
+
+    def __repr__(self):
+        return f'<Order {self.date} - #{self.order_id}: {self.status} >'

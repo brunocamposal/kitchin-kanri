@@ -1,4 +1,6 @@
 from flask import Blueprint, request
+from app.models.product import db, Product
+from app.models.serializer.product_schema import ProductSchema
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from app.services.http import build_api_response
@@ -6,7 +8,7 @@ from app.services.http import build_api_response
 bp_products = Blueprint('api_products', __name__, url_prefix='/products')
 
 
-@bp_products.route('/')
+@bp_products.route('')
 def list_all():
     products = Product.query.all()
 
@@ -27,7 +29,7 @@ def list_one_product(product_id: int):
     }
 
 
-@bp_products.route('/', methods=['POST'])
+@bp_products.route('', methods=['POST'])
 def create_one_product():
     data = request.get_json()
 
