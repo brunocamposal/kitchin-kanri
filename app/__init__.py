@@ -1,6 +1,7 @@
 from flask import Flask
 from app.models import db, mg
 from environs import Env
+from flask_migrate import Migrate
 from app.views.orders import bp_orders
 
 
@@ -15,6 +16,8 @@ def create_app():
 
     db.init_app(app)
     mg.init_app(app,db)
+
+    Migrate(app, db)
 
     ## Chamada da view
     app.register_blueprint(bp_orders)
