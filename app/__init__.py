@@ -5,6 +5,7 @@ from app.views.orders import bp_orders
 from app.views.product import bp_products
 
 
+
 def create_app():
     env = Env()
     env.read_env()
@@ -16,6 +17,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = env.str('SQLALCHEMY_DATABASE_URI')
 
     db.init_app(app)
+
     mg.init_app(app, db)
 
     # Chamada da view
