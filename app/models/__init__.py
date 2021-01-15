@@ -5,7 +5,12 @@ from flask_migrate import Migrate
 
 db = SQLAlchemy()
 ma = Marshmallow()
-mg = Migrate()
+
+def configure(app):
+    db.init_app(app)
+    ma.init_app(app)
+    app.db = db
+    Migrate(app, app.db)
 
 # Tabelas
 

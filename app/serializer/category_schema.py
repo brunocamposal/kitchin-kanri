@@ -1,5 +1,4 @@
-from app.models import ma
-from app.models.category import Category
+from app.models import Category, ma
 
 class CategorySchema(ma.SQLAlchemySchema):
     class Meta:
