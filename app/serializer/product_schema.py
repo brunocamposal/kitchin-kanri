@@ -1,5 +1,4 @@
-from app.models.product import Product, ma
-from app.models.serializer.order_schema import OrderSchema
+from app.models import ma
 
 
 class ProductSchema(ma.SQLAlchemySchema):
@@ -11,4 +10,3 @@ class ProductSchema(ma.SQLAlchemySchema):
     price = ma.auto_field()
     description = ma.auto_field()
     category_id = ma.auto_field()
-    orders = fields.Nested(OrderSchema, many=True)

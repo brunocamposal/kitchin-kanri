@@ -1,8 +1,8 @@
 from flask import Flask
-from app.models import db, mg
+from app.models import mg, db
 from environs import Env
 from app.views.orders import bp_orders
-from app.views.products import bp_products
+from app.views.product import bp_products
 
 
 def create_app():
@@ -20,7 +20,6 @@ def create_app():
 
     # Chamada da view
     app.register_blueprint(bp_products)
-    # Chamada da view
     app.register_blueprint(bp_orders)
 
     return app

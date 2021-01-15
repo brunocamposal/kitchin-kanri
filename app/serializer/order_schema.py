@@ -1,5 +1,5 @@
-from app.models import Order, ma
-from app.models.serializer.product_schema import ProductSchema
+from app.models import ma
+from app.serializer.product_schema import ProductSchema
 
 
 class OrderSchema(ma.SQLAlchemySchema):
