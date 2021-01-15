@@ -7,7 +7,7 @@ class CategorySchema(ma.SQLAlchemySchema):
 
     id = ma.auto_field()
     name = ma.auto_field()
-    
+
 
 category_schema = CategorySchema()
 categories_schema = CategorySchema(many=True)

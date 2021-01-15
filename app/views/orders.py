@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Order
-from app.models.serializer.order_schema import OrderSchema
+# from app.models import OrderSchema
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from app.services.http import build_api_response
