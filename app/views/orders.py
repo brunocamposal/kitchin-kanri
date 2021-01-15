@@ -1,10 +1,10 @@
 from flask import Blueprint, request
 from app.models import db, Order
-# from app.models import OrderSchema
+from app.serializer.order_schema import OrderSchema
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from app.services.http import build_api_response
-
+import datetime
 
 bp_orders = Blueprint('api_orders', __name__, url_prefix='/orders')
 
@@ -12,10 +12,15 @@ bp_orders = Blueprint('api_orders', __name__, url_prefix='/orders')
 @bp_orders.route('', methods=['POST'])
 def create():
     data = request.get_json()
+
+    current_date = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+
+
     order = Order(
         status=data["status"],
-        date=data['date'],
-        payment_method=data['payment_method']
+        date=current_date,
+        payment_method=data['payment_method'],
+        total_price=data['total_price']
     )
 
     try:
@@ -35,7 +40,7 @@ def get():
     }, HTTPStatus.OK
 
 
-@bp_orders.route('/<order_id>', methods=['GET'])
+@bp_orders.route('/<int:order_id>', methods=['GET'])
 def get_id(order_id: int):
 
     order = Order.query.filter(Order.id == order_id).all()
@@ -46,7 +51,7 @@ def get_id(order_id: int):
     return {'data': OrderSchema(many=True).dump(order)}
 
 
-@bp_orders.route('/<order_id>', methods=['PUT'])
+@bp_orders.route('/<int:order_id>', methods=['PUT'])
 def put(order_id: int):
 
     data = request.get_json()
@@ -59,7 +64,7 @@ def put(order_id: int):
     return {'data': OrderSchema().dump(order)}
 
 
-@bp_orders.route('/<order_id>', methods=['DELETE'])
+@bp_orders.route('/<int:order_id>', methods=['DELETE'])
 def delete(order_id: int):
 
     order = Order.query.filter_by(id=order_id).delete()

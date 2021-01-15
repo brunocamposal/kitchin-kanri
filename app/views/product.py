@@ -37,7 +37,8 @@ def create_one_product():
         name=data['name'],
         price=data['price'],
         description=data['description'],
-        image=data['image']
+        image=data['image'],
+        category_id=data['category_id']
     )
 
     try:

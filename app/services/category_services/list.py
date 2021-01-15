@@ -1,4 +1,4 @@
-from app.models.category import Category
+from app.models import Category
 from app.serializer.category_schema import categories_schema
 
 def category_list():

@@ -1,5 +1,5 @@
 from app.serializer.category_schema import category_schema
-from app.models.category import Category
+from app.models import Category
 from flask import current_app
 from typing import Dict
 

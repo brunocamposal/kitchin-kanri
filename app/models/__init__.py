@@ -5,7 +5,12 @@ from flask_migrate import Migrate
 
 db = SQLAlchemy()
 ma = Marshmallow()
-mg = Migrate()
+
+def configure(app):
+    db.init_app(app)
+    ma.init_app(app)
+    app.db = db
+    Migrate(app, app.db)
 
 # Tabelas
 
@@ -22,8 +27,8 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(120), unique=False, nullable=False)
     date = db.Column(db.DateTime, unique=False, nullable=True)
-    payment_method = db.Column(db.String(120), unique=False, nullable=False)
-    total_price = db.Column(db.Float, unique=False, nullable=False)
+    total_price = db.Column(db.Float, unique=False, nullable=True)
+    payment_method = db.Column(db.String(120), unique=False, nullable=True)
 
     products = db.relationship(
         "Product", secondary=product_list, back_populates='orders')

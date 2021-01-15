@@ -1,4 +1,4 @@
-from app.models.category import Category
+from app.models import Category
 from app.serializer.category_schema import category_schema
 from flask import current_app
 from http import HTTPStatus
