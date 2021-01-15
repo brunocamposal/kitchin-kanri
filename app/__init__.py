@@ -3,7 +3,6 @@ from app.models import db, mg
 from environs import Env
 from app.views.orders import bp_orders
 
-
 def create_app():
     env = Env()
     env.read_env()
