@@ -1,6 +1,5 @@
 from app.models import ma, Product
 
-
 class ProductSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Product
