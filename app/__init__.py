@@ -3,6 +3,7 @@ from environs import Env
 from app.views.orders import bp_orders
 from app.views.product import bp_products
 from app.views.categories import bp_categories
+from app.views.users import bp_users
 from app.models import configure
 
 
@@ -23,5 +24,6 @@ def create_app():
     app.register_blueprint(bp_categories)
     app.register_blueprint(bp_products)
     app.register_blueprint(bp_orders)
+    app.register_blueprint(bp_users)
 
     return app
