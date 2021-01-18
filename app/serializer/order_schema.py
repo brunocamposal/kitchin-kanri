@@ -1,5 +1,6 @@
-from app.models import ma
+from app.models import ma, Order
 from app.serializer.product_schema import ProductSchema
+from marshmallow import fields
 
 
 class OrderSchema(ma.SQLAlchemySchema):

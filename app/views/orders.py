@@ -1,6 +1,7 @@
 from flask import Blueprint, request
-from app.models import db, Order
+from app.models import db, Order, Product
 from app.serializer.order_schema import OrderSchema
+from app.services.order_services import total_price, add_products
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from app.services.http import build_api_response
@@ -15,15 +16,15 @@ def create():
 
     current_date = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
-
     order = Order(
-        status=data["status"],
+        status=data.get('status'),
         date=current_date,
-        payment_method=data['payment_method'],
-        total_price=data['total_price']
+        payment_method=data.get('payment_method'),
+        total_price=total_price(data.get('products_id')),
     )
-
+    
     try:
+        add_products(order, data.get('products_id'))
         db.session.add(order)
         db.session.commit()
         return build_api_response(HTTPStatus.CREATED)
