@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from app.models import db, Product
-## from app.models import ProductSchema
+
+from app.serializer.product_schema import ProductSchema
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from app.services.http import build_api_response
@@ -67,4 +68,11 @@ def update_one_product(product_id: int):
     product.price = data['price'] if data.get('price') else product.price
     product.description = data['description'] if data.get(
         'description') else product.description
-    product.image = data['image'] if data.get('image') else product.image
+    product.category_id = data['category_id'] if data.get(
+        'category_id') else product.category_id
+
+    db.session.commit()
+
+    return {
+        'data': ProductSchema().dump(product)
+    }
