@@ -28,7 +28,7 @@ class Order(db.Model):
     total_price = db.Column(db.Float, unique=False, nullable=True)
     payment_method = db.Column(db.String(120), unique=False, nullable=True)
 
-    ##products_id = db.relationship("Product", secondary=product_list, back_populates='products')
+    products = db.relationship("Product", secondary=product_list, back_populates='products')
 
     def __repr__(self):
         return f'<Order {self.date} - #{self.id}: {self.status} >'

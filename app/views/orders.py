@@ -13,18 +13,18 @@ bp_orders = Blueprint('api_orders', __name__, url_prefix='/orders')
 @bp_orders.route('', methods=['POST'])
 def create():
     data = request.get_json()
-
     current_date = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+    
 
     order = Order(
-        status=data.get('status'),
+        status="Pedido pendente",
         date=current_date,
         payment_method=data.get('payment_method'),
-        total_price=total_price(data.get('products_id')),
+        total_price=total_price(data.get('products')),
     )
     
     try:
-        add_products(order, data.get('products_id'))
+        add_products(order, data.get('products'))
         db.session.add(order)
         db.session.commit()
         return build_api_response(HTTPStatus.CREATED)
@@ -44,12 +44,12 @@ def get():
 @bp_orders.route('/<int:order_id>', methods=['GET'])
 def get_id(order_id: int):
 
-    order = Order.query.filter(Order.id == order_id).all()
+    order = Order.query.filter(Order.id == order_id).first()
 
     if not order:
         return build_api_response(HTTPStatus.NOT_FOUND)
 
-    return {'data': OrderSchema(many=True).dump(order)}
+    return {'data': OrderSchema().dump(order)}
 
 
 @bp_orders.route('/<int:order_id>', methods=['PUT'])
