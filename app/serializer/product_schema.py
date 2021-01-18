@@ -1,4 +1,4 @@
-from app.models import ma
+from app.models import ma, Product
 
 
 class ProductSchema(ma.SQLAlchemySchema):
