@@ -65,15 +65,3 @@ class User(db.Model):
     email = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(50), nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False)
-
-
-class UserSchema(ma.SQLAlchemySchema):
-    """ Serializer to users """
-    class Meta:
-        """ From where fields will come """
-        model = User
-
-    id = ma.auto_field()
-    name = ma.auto_field()
-    email = ma.auto_field()
-    is_admin = ma.auto_field()
