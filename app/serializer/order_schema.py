@@ -1,5 +1,6 @@
-from app.models import ma
+from app.models import ma, Order
 from app.serializer.product_schema import ProductSchema
+from marshmallow import fields
 
 
 class OrderSchema(ma.SQLAlchemySchema):
@@ -11,4 +12,4 @@ class OrderSchema(ma.SQLAlchemySchema):
     date = ma.auto_field()
     payment_method = ma.auto_field()
     total_price = ma.auto_field()
-    products_id = fields.Nested(ProductSchema, many=True)
+    products = fields.Nested(ProductSchema, many=True)

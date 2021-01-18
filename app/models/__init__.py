@@ -18,10 +18,8 @@ def configure(app):
 
 product_list = db.Table(
     'product_list',
-    db.Column('order_id', db.Integer, db.ForeignKey(
-        'order.id')),
-    db.Column('product_id', db.Integer, db.ForeignKey(
-        'product.id'))
+    db.Column('order_id', db.Integer, db.ForeignKey('order.id')),
+    db.Column('product_id', db.Integer, db.ForeignKey('product.id'))
 )
 
 
@@ -33,10 +31,10 @@ class Order(db.Model):
     payment_method = db.Column(db.String(120), unique=False, nullable=True)
 
     products = db.relationship(
-        "Product", secondary=product_list, back_populates='orders')
+        "Product", secondary=product_list, back_populates='products')
 
     def __repr__(self):
-        return f'<Order {self.date} - #{self.order_id}: {self.status} >'
+        return f'<Order {self.date} - #{self.id}: {self.status} >'
 
 
 class Category(db.Model):
@@ -53,8 +51,8 @@ class Product(db.Model):
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
-    orders = db.relationship(
-        "Order", secondary=product_list, back_populates="products")
+    products = db.relationship(
+        "Order", secondary=product_list, backref=db.backref("products_list", lazy="dynamic"))
 
 
 class User(db.Model):
