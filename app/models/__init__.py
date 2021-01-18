@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 ma = Marshmallow()
 
+
 def configure(app):
     db.init_app(app)
     ma.init_app(app)
@@ -13,6 +14,7 @@ def configure(app):
     Migrate(app, app.db)
 
 # Tabelas
+
 
 product_list = db.Table(
     'product_list',
@@ -53,3 +55,25 @@ class Product(db.Model):
 
     orders = db.relationship(
         "Order", secondary=product_list, back_populates="products")
+
+
+class User(db.Model):
+    """ User table, with option to give admin attr to some """
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=True)
+    email = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+    is_admin = db.Column(db.Boolean, nullable=False)
+
+
+class UserSchema(ma.SQLAlchemySchema):
+    """ Serializer to users """
+    class Meta:
+        """ From where fields will come """
+        model = User
+
+    id = ma.auto_field()
+    name = ma.auto_field()
+    email = ma.auto_field()
+    is_admin = ma.auto_field()
