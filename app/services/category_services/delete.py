@@ -1,4 +1,5 @@
-from app.models.category import Category
+from app.models import Category
+from app.services.http import build_api_response
 from flask import current_app
 from http import HTTPStatus
 
@@ -9,4 +10,4 @@ def delete_category(category_id: int):
     current_app.db.session.delete(category)
     current_app.db.session.commit()
 
-    return {"msg":"deleted"}, HTTPStatus.NO_CONTENT
+    return {'message': 'Deleted'}, HTTPStatus.OK

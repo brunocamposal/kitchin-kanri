@@ -1,9 +1,13 @@
-from flask import Blueprint, request
 from app.services.category_services import category_list, update_category, delete_category, register_category
+from app.services.category_services import get_category
+from flask import Blueprint, request
 # /categories
 
 bp = Blueprint('categories', __name__)
 
+
+##todo
+## fazer um tratamento de erro se não ouver o id
 
 @bp.route('/categories', methods=['GET','POST'])
 def categories():
@@ -14,13 +18,16 @@ def categories():
     return category_list()
 
 # /categories<category_id>
-@bp.route('/categories/<int:category_id>', methods=['DELETE', 'PATCH'])
+@bp.route('/categories/<int:category_id>', methods=['GET', 'DELETE', 'PATCH'])
 def category(category_id):
     if request.method == 'DELETE':
         return delete_category(category_id)
     
-    data = request.get_json()
+
+    if request.method == 'PATCH':
+        data = request.get_json()
     
-    return update_category(category_id, data)
+        return update_category(category_id, data)
 
 
+    return get_category(category_id)
