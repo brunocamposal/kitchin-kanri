@@ -34,6 +34,9 @@ def list_one_product(product_id: int):
 def create_one_product():
     data = request.get_json()
 
+    if not data:
+        return build_api_response(HTTPStatus.NOT_FOUND)
+
     product = Product(
         name=data['name'],
         price=data['price'],
@@ -52,7 +55,13 @@ def create_one_product():
 
 @bp_products.route('/<int:product_id>', methods=['DELETE'])
 def delete_one_product(product_id: int):
-    Product.query.filter_by(id=product_id).delete()
+
+    product = Product.query.filter_by(id=product_id).first()
+
+    if product is None:
+        return build_api_response(HTTPStatus.NOT_FOUND)
+
+    db.session.delete(product)
     db.session.commit()
 
     return build_api_response(HTTPStatus.OK)
@@ -63,6 +72,9 @@ def update_one_product(product_id: int):
     data = request.get_json()
 
     product = Product.query.get_or_404(product_id)
+
+    if product is None:
+        return build_api_response(HTTPStatus.NOT_FOUND)
 
     product.name = data['name'] if data.get('name') else product.name
     product.price = data['price'] if data.get('price') else product.price
