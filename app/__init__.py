@@ -5,7 +5,7 @@ from flask_jwt_extended import JWTManager
 
 from app.views.orders import bp_orders
 from app.views.product import bp_products
-from app.views.categories import bp_categories
+from app.views.categories import bp as bp_categories
 from app.views.users import bp_users
 from app.views.authenticator import bp_auth
 from app.models import configure

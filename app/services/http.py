@@ -14,7 +14,8 @@ def build_response_message(http_status) -> dict:
         HTTPStatus.NOT_FOUND: 'Not found',
         HTTPStatus.OK: 'ok',
         HTTPStatus.UNAUTHORIZED: 'Unauthorized',
-        HTTPStatus.UNPROCESSABLE_ENTITY: 'User e-mail already in use'
+        HTTPStatus.UNPROCESSABLE_ENTITY: 'User e-mail already in use',
+        HTTPStatus.OK: 'Ok',
     }
 
     return {'message': messages[http_status]}

@@ -12,4 +12,4 @@ def register_category(data: Dict):
     current_app.db.session.add(category)
     current_app.db.session.commit()
 
-    return category_schema.jsonify(category)
+    return category_schema.jsonify(category), HTTPStatus.CREATED
