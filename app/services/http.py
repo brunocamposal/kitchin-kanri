@@ -10,7 +10,8 @@ def build_response_message(http_status) -> dict:
         HTTPStatus.BAD_REQUEST: 'Bad request',
         HTTPStatus.CREATED: 'Successfully created',
         HTTPStatus.NOT_FOUND: 'Not found',
-        HTTPStatus.OK: 'ok'
+        HTTPStatus.OK: 'Ok',
+        
     }
 
     return {'message': messages[http_status]}
