@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 ma = Marshmallow()
 
+
 def configure(app):
     db.init_app(app)
     ma.init_app(app)
@@ -13,6 +14,7 @@ def configure(app):
     Migrate(app, app.db)
 
 # Tabelas
+
 
 product_list = db.Table(
     'product_list',
@@ -28,7 +30,8 @@ class Order(db.Model):
     total_price = db.Column(db.Float, unique=False, nullable=True)
     payment_method = db.Column(db.String(120), unique=False, nullable=True)
 
-    products = db.relationship("Product", secondary=product_list, back_populates='products')
+    products = db.relationship(
+        "Product", secondary=product_list, back_populates='products')
 
     def __repr__(self):
         return f'<Order {self.date} - #{self.id}: {self.status} >'
@@ -50,3 +53,13 @@ class Product(db.Model):
 
     products = db.relationship(
         "Order", secondary=product_list, backref=db.backref("products_list", lazy="dynamic"))
+
+
+class User(db.Model):
+    """ User table, with option to give admin attr to some """
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=True)
+    email = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+    is_admin = db.Column(db.Boolean, nullable=False)
