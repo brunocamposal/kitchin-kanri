@@ -70,6 +70,8 @@ def update_one_product(product_id: int):
         'description') else product.description
     product.category_id = data['category_id'] if data.get(
         'category_id') else product.category_id
+    product.image = data['image'] if data.get(
+        'image') else product.image
 
     db.session.commit()
 

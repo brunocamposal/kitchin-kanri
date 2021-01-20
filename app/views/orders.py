@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from app.models import db, Order, Product
 from app.serializer.order_schema import OrderSchema
-from app.services.order_services import total_price, add_products
+from app.services.order_services import total_price, add_products, verify_product
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
 from app.services.http import build_api_response
@@ -15,14 +15,18 @@ def create():
     data = request.get_json()
     current_date = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     
+    response = verify_product(data.get('products'))
+
+    if response == "Produto não cadastrado":
+        return build_api_response(HTTPStatus.BAD_REQUEST)
 
     order = Order(
-        status="Pedido pendente",
-        date=current_date,
-        payment_method=data.get('payment_method'),
-        total_price=total_price(data.get('products')),
-    )
-    
+            status="Pedido pendente",
+            date=current_date,
+            payment_method=data.get('payment_method'),
+            total_price=total_price(data.get('products')),
+        )
+
     try:
         add_products(order, data.get('products'))
         db.session.add(order)
