@@ -1,0 +1,45 @@
+{% extends "base.html.jinja" %}
+
+{% block title %} ッ Kitchin Kanri {% endblock %}
+
+
+
+{% block content %}
+
+<script type="text/javascript">
+    const setLocalStorage = (product) => {
+        get_product = localStorage.getItem('Product_list') ? localStorage.getItem('Product_list').length > 0 : []
+        json = JSON.stringify([...get_product, product])
+        localStorage.setItem('Product_list', json);
+    }
+</script>
+
+    {%for product in data: %} 
+            <a href="/category_list/{{product.get("category_id")}}">  
+                <img class="arrow-menu" src="https://cdn.iconscout.com/icon/free/png-256/keyboard-left-arrow-1780092-1518653.png" /> 
+            </a>
+            <a href="/">  
+                <img class="chart-menu" src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG38.png" /> 
+            </a>
+            <div class="logo-menu"> 
+                <h4> キッチン </h4>
+                <h5> Kitchin Kanri </h5>
+            </div>
+            <div class="content-product"> 
+                <div class="product"> 
+                    <img class="product-image" src="{{product.get("image")}}"/>
+                    <h3>{{product.get("name").title()}} </h3> 
+                </div>
+                <div class="description-product">
+                    <h3 class="product-price"> R$ {{product.get("price")}}  </h3>            
+                    <h4> <strong> Descrição: </strong> </h4>    
+                    <h5 class="description"> {{product.get("description")}}  </h5>            
+                </div>   
+                <div class="button" onclick="setLocalStorage({{product}})">
+                     Adicionar ao carrinho
+                </div>  
+                <h4 class="product-message"> {{message}} </h4>  
+            </div>
+    {%endfor%}
+{% endblock %}
+

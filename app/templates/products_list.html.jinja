@@ -1,0 +1,31 @@
+{% extends "base.html.jinja" %}
+
+{% block title %} ッ Kitchin Kanri {% endblock %}
+
+
+{% block content %}
+   <div class="content-products-category"> 
+        <a href="/category_list">  
+            <img class="arrow-menu" src="https://cdn.iconscout.com/icon/free/png-256/keyboard-left-arrow-1780092-1518653.png" /> 
+        </a>
+        <a href="/">  
+            <img class="chart-menu" src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG38.png" /> 
+        </a>
+        <div class="logo-menu"> 
+            <h4> キッチン </h4>
+            <h5> Kitchin Kanri </h5>
+        </div>
+        {% if data|length == 0 %}
+            <h4> Essa categoria não possui produtos cadastrados!</h4>
+        {%endif%}
+        {%for product in data: %} 
+            <a href="{{product.get("link")}}"> 
+                <div class="card"> 
+                    <img class="products-image" src="{{product.get("image")}}"/>
+                    <h4 class="product-price"> R$ {{product.get("price")}} </h4> 
+                    <h5>{{product.get("name").title()}} </h5> 
+                </div>
+            </a>
+        {%endfor%}
+    </div>
+{% endblock %}
