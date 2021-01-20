@@ -4,7 +4,6 @@
 
 
 {% block content %}
-
    <div class="content-products-category"> 
         <a href="/category_list">  
             <img class="arrow-menu" src="https://cdn.iconscout.com/icon/free/png-256/keyboard-left-arrow-1780092-1518653.png" /> 
@@ -19,12 +18,14 @@
         {% if data|length == 0 %}
             <h4> Essa categoria não possui produtos cadastrados!</h4>
         {%endif%}
-        {%for category in data: %} 
-            <div class="card"> 
-                <img class="product-image" src="{{category.get("image")}}"/>
-                <h4 class="product-price">{{category.get("price")}} </h4> 
-                <h5>{{category.get("name").title()}} </h5> 
-            </div>
+        {%for product in data: %} 
+            <a href="{{product.get("link")}}"> 
+                <div class="card"> 
+                    <img class="products-image" src="{{product.get("image")}}"/>
+                    <h4 class="product-price"> R$ {{product.get("price")}} </h4> 
+                    <h5>{{product.get("name").title()}} </h5> 
+                </div>
+            </a>
         {%endfor%}
     </div>
 {% endblock %}
