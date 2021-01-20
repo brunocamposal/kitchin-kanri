@@ -12,15 +12,12 @@ def configure(app):
     app.db = db
     Migrate(app, app.db)
 
-
 # Tabelas
 
 product_list = db.Table(
     'product_list',
-    db.Column('order_id', db.Integer, db.ForeignKey(
-        'order.id')),
-    db.Column('product_id', db.Integer, db.ForeignKey(
-        'product.id'))
+    db.Column('order_id', db.Integer, db.ForeignKey('order.id')),
+    db.Column('product_id', db.Integer, db.ForeignKey('product.id'))
 )
 
 
@@ -28,19 +25,19 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(120), unique=False, nullable=False)
     date = db.Column(db.DateTime, unique=False, nullable=True)
-    payment_method = db.Column(db.String(120), unique=False, nullable=False)
-    total_price = db.Column(db.Float, unique=False, nullable=False)
+    total_price = db.Column(db.Float, unique=False, nullable=True)
+    payment_method = db.Column(db.String(120), unique=False, nullable=True)
 
-    products = db.relationship(
-        "Product", secondary=product_list, back_populates='orders')
+    products = db.relationship("Product", secondary=product_list, back_populates='products')
 
     def __repr__(self):
-        return f'<Order {self.date} - #{self.order_id}: {self.status} >'
+        return f'<Order {self.date} - #{self.id}: {self.status} >'
 
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128), unique=True)
+    name = db.Column(db.String(128), unique=True, nullable=False)
+    image = db.Column(db.String(256))
 
 
 class Product(db.Model):
@@ -52,5 +49,5 @@ class Product(db.Model):
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
-    orders = db.relationship(
-        "Order", secondary=product_list, back_populates="products")
+    products = db.relationship(
+        "Order", secondary=product_list, backref=db.backref("products_list", lazy="dynamic"))
