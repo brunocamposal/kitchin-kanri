@@ -4,6 +4,7 @@ from flask import current_app
 from http import HTTPStatus
 from typing import Dict
 
+
 def register_category(data: Dict):
 
     category = Category(name=data['name'])
