@@ -41,7 +41,6 @@ def test_POST_request_categories(app):
 
         data = json.loads(response.data.decode())
         assert response.status_code == 201
-        assert 'Successfully created' in data.get("message")
 
 
 def test_PATCH_request_categories(app):
@@ -58,7 +57,7 @@ def test_PATCH_request_categories(app):
         data = json.loads(response.data.decode())
         assert response.status_code == 200
 
-        assert data == {"data": {"id": 3, "name": "Porções"},"message": "Ok" }
+        assert data == {"id": 3, "name": "Porções"}
         
 
 

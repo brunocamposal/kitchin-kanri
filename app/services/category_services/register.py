@@ -1,8 +1,7 @@
-from app.serializer.category_schema import category_schema
-from app.services.http import build_api_response
 from app.models import Category
+from app.serializer.category_schema import category_schema
 from flask import current_app
-
+from http import HTTPStatus
 from typing import Dict
 
 def register_category(data: Dict):
@@ -12,5 +11,4 @@ def register_category(data: Dict):
     current_app.db.session.add(category)
     current_app.db.session.commit()
 
-    return build_api_response(201, category_schema.dumps(category))
-    
+    return category_schema.jsonify(category), HTTPStatus.CREATED

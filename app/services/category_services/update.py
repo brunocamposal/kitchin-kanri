@@ -8,14 +8,13 @@ from typing import Dict
 
 def update_category(category_id: int , data: Dict):
 
-    category = Category.query.filter_by(id=category_id).first()
+    category = Category.query.get_or_404(category_id)
 
-    if category is None:
+    if category == None:
         return build_api_response(404)
 
     setattr(category, 'name', data['name'])
 
     current_app.db.session.commit()
 
-    return build_api_response(200, category_schema.dumps(category))
-    
+    return category_schema.jsonify(category), HTTPStatus.OK
