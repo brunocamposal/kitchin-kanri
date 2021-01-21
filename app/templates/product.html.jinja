@@ -5,14 +5,6 @@
 
 {% block content %}
 
-<script type="text/javascript">
-    const setLocalStorage = (product) => {
-        get_product = localStorage.getItem('Product_list') ? JSON.parse(localStorage.getItem('Product_list')) : []
-        json = JSON.stringify([...get_product, product])
-        localStorage.setItem('Product_list', json);
-    }
-</script>
-
     {%for product in data: %} 
             <a href="/category_list/{{product.get("category_id")}}">  
                 <img class="arrow-menu" src="https://cdn.iconscout.com/icon/free/png-256/keyboard-left-arrow-1780092-1518653.png" /> 
