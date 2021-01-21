@@ -4,6 +4,7 @@ from flask import current_app
 from http import HTTPStatus
 from typing import Dict
 
+
 def register_category(data: Dict):
 
     category = Category(name=data['name'])
@@ -11,4 +12,4 @@ def register_category(data: Dict):
     current_app.db.session.add(category)
     current_app.db.session.commit()
 
-    return category_schema.jsonify(category)
+    return category_schema.jsonify(category), HTTPStatus.CREATED

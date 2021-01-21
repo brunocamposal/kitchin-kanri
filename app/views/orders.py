@@ -1,11 +1,14 @@
+import datetime
 from flask import Blueprint, request
+from http import HTTPStatus
+from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import jwt_required
+
 from app.models import db, Order, Product
 from app.serializer.order_schema import OrderSchema
 from app.services.order_services import total_price, add_products, verify_product
-from http import HTTPStatus
-from sqlalchemy.exc import IntegrityError
+
 from app.services.http import build_api_response
-import datetime
 
 bp_orders = Blueprint('api_orders', __name__, url_prefix='/orders')
 
@@ -37,6 +40,7 @@ def create():
 
 
 @bp_orders.route('', methods=['GET'])
+@jwt_required
 def get():
     orders = Order.query.all()
 
@@ -57,6 +61,7 @@ def get_id(order_id: int):
 
 
 @bp_orders.route('/<int:order_id>', methods=['PUT'])
+@jwt_required
 def put(order_id: int):
 
     data = request.get_json()
@@ -70,6 +75,7 @@ def put(order_id: int):
 
 
 @bp_orders.route('/<int:order_id>', methods=['DELETE'])
+@jwt_required
 def delete(order_id: int):
 
     order = Order.query.filter_by(id=order_id).delete()
