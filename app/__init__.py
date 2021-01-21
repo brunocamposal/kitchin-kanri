@@ -20,7 +20,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://jfmlpzmppuaujf:0e2ea75f03ab08064ceec5e82cceee3971c3277d4372e1ad2e06bdf106bb6647@ec2-52-71-107-99.compute-1.amazonaws.com:5432/d7c2gh668142gs'
     app.config['JWT_SECRET_KEY'] = token_hex(16)
 
     # Configura db, ma e o migrate
