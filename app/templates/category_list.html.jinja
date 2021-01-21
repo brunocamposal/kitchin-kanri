@@ -3,7 +3,6 @@
 {% block title %} ッ Kitchin Kanri {% endblock %}
 
 {% block content %}
-<div class="content-center"> 
     <div class="content-category"> 
         <a href="/">  
             <img class="arrow-menu" src="https://cdn.iconscout.com/icon/free/png-256/keyboard-left-arrow-1780092-1518653.png" /> 
@@ -16,15 +15,17 @@
             <h5> Kitchin Kanri </h5>
         </div>
         {% if data|length == 0 %}
-            <h4> Não possui categorias cadastradas!</h4>
+            <div class="not-found-category"> 
+                <h4> Não possui categorias cadastradas!</h4>
+            </div>
         {%endif%}
         {%for category in data: %}
             <a href="{{category.link}}">  
                 <div class="card"> 
+                    <img class="product-image" src="{{category.get("image")}}"/>
                     <h5>{{category.get("name").title()}} </h5> 
                 </div>
             </a>
         {%endfor%}
     </div>
-</div>
 {% endblock %}

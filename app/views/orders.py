@@ -27,7 +27,7 @@ def create():
             status="Pedido pendente",
             date=current_date,
             payment_method=data.get('payment_method'),
-            total_price=total_price(data.get('products')),
+            total_price=total_price(data.get('products'))
         )
 
     try:

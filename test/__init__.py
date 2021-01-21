@@ -16,9 +16,10 @@ def app():
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = env.bool(
         'SQLALCHEMY_TRACK_MODIFICATIONS')
-    app.config['SQLALCHEMY_DATABASE_URI'] = env.str('SQLALCHEMY_TEST_DATABASE_URI')
+    app.config['SQLALCHEMY_DATABASE_URI'] = env.str(
+        'SQLALCHEMY_TEST_DATABASE_URI')
 
-    ## Configura db, ma e o migrate
+    # Configura db, ma e o migrate
     configure(app)
 
     # Chamada da view

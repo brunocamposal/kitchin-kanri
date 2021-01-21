@@ -1,8 +1,8 @@
 from test import app
 import json
 
-def test_Order_GET_request(app):
 
+def test_Order_GET_request(app):
     """with app.test_client() as client:
         response = client.get('/orders')
 
@@ -20,11 +20,11 @@ def test_Order_GET_request(app):
             {'date': '2021-01-18T13:31:16', 'id': 9, 'payment_method': 'dinheiro', 'products': [], 'status': 'Pedido em andamento', 'total_price': 0.0}, 
             {'date': '2021-01-18T13:38:14', 'id': 10, 'payment_method': 'dinheiro', 'products': [], 'status': 'Pedido em andamento', 'total_price': 0.0}
         ]} 
-        
-        assert response.status_code == 200 """
-    
-def test_Order_GET_ID_request(app):
 
+        assert response.status_code == 200 """
+
+
+def test_Order_GET_ID_request(app):
     """with app.test_client() as client:
         response = client.get('/orders/2')
 
@@ -33,12 +33,11 @@ def test_Order_GET_ID_request(app):
         assert data == {'data': 
             {'date': '2021-01-18T13:19:43', 'id': 2, 'payment_method': 'dinheiro', 'products': [], 'status': 'Pedido em andamento', 'total_price': 0.0}, 
         } 
-        
+
         assert response.status_code == 200 """
 
 
 def test_Order_POST_request(app):
-
     """ with app.test_client() as client:
         response = client.post(
             '/orders',
@@ -56,9 +55,7 @@ def test_Order_POST_request(app):
         assert 'Successfully created' in data.get("message")"""
 
 
-
 def test_Order_PUT_request(app):
-
     """with app.test_client() as client:
         response = client.put(
             '/orders/3',
@@ -74,11 +71,9 @@ def test_Order_PUT_request(app):
         assert data == {'data': 
             {'date': '2021-01-18T13:23:40', 'id': 3, 'payment_method': 'dinheiro', 'products': [], 'status': 'Pedido Concluído', 'total_price': 0.0} 
             } """
-        
 
 
 def test_Order_DELETE_request(app):
-
     """with app.test_client() as client:
         response = client.delete('/orders/11')
 

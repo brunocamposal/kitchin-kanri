@@ -3,16 +3,7 @@
 {% block title %} ッ Kitchin Kanri {% endblock %}
 
 
-
 {% block content %}
-
-<script type="text/javascript">
-    const setLocalStorage = (product) => {
-        get_product = localStorage.getItem('Product_list') ? localStorage.getItem('Product_list').length > 0 : []
-        json = JSON.stringify([...get_product, product])
-        localStorage.setItem('Product_list', json);
-    }
-</script>
 
     {%for product in data: %} 
             <a href="/category_list/{{product.get("category_id")}}">  
