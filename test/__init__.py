@@ -2,7 +2,7 @@ from flask import Flask
 from environs import Env
 from app.views.orders import bp_orders
 from app.views.product import bp_products
-from app.views.categories import bp_categories
+from app.views.categories import bp as bp_categories
 from app.models import configure
 import pytest
 

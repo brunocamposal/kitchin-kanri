@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
+a {
+  color: black;
+  cursor: pointer;
+}
+
+body {
+  overflow: hidden;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+button{
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 50px;
+}
+
+.tablet {
+  background-image: url('https://raw.githubusercontent.com/brunocamposal/kitchin-kanri-assets/master/ipad.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 520px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.content-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+}
+
+.content-category {
+  margin-top: 140px;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content-products-category {
+  margin-top: 100px;
+  height: 520px;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content-product {
+  margin-top: 100px;
+  height: 520px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow-menu {
+  position: absolute;
+  top: 35px;
+  left: 16px;
+  width: 60px;
+}
+
+.logo-menu {
+  position: absolute;
+  top: 40px;
+  left: 170px;
+}
+
+.chart-menu {
+  position: absolute;
+  top: 40px;
+  left: 345px;
+  width: 50px;
+}
+
+.content {
+  position: absolute;
+  top: 33px;
+  left: 33px;
+  width: 450px;
+  height: 92%;
+  border-radius: 9px;
+}
+
+.button {
+  background-color: #f6852a;
+  padding: 12px 20px;
+  width: 220px;
+  color: white;
+  border-radius: 10px;
+  margin-top: 30px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.home-image {
+  background-image: url('https://i.pinimg.com/originals/6d/2d/ff/6d2dff702e92019f92903757d27e0611.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 330px;
+  height: 180px;
+  margin-top: 30px;
+}
+
+.card {
+  width: 189px;
+  height: 180px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px 23px 10px;
+  margin: 8px;
+}
+
+.card:hover {
+  background-color: #e5e9f0;
+}
+
+.product-image {
+  width: 180px;
+}
+
+.description-product {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 20px;
+  width: 350px;
+}
+
+.description {
+  color: rgba(0, 0, 0, 0.794);
+  margin-top: 20px;
+}
+
+
+.products-image {
+  width: 140px;
+  padding-bottom: 5px;
+}
+
+.product-price {
+  color: #f6852a;
+  padding-bottom: 5px;
+}
+
+.product-message{
+  margin-top: 20px;
+}

@@ -1,10 +1,12 @@
 from flask import Blueprint, request
-from app.models import db, Product
-
-from app.serializer.product_schema import ProductSchema
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import jwt_required
+
+from app.models import db, Product
+from app.serializer.product_schema import ProductSchema
 from app.services.http import build_api_response
+
 
 bp_products = Blueprint('api_products', __name__, url_prefix='/products')
 
@@ -31,6 +33,7 @@ def list_one_product(product_id: int):
 
 
 @bp_products.route('', methods=['POST'])
+@jwt_required
 def create_one_product():
     data = request.get_json()
 
@@ -54,6 +57,7 @@ def create_one_product():
 
 
 @bp_products.route('/<int:product_id>', methods=['DELETE'])
+@jwt_required
 def delete_one_product(product_id: int):
 
     product = Product.query.filter_by(id=product_id).first()
@@ -68,6 +72,7 @@ def delete_one_product(product_id: int):
 
 
 @bp_products.route('/<int:product_id>', methods=['PUT'])
+@jwt_required
 def update_one_product(product_id: int):
     data = request.get_json()
 
@@ -82,6 +87,8 @@ def update_one_product(product_id: int):
         'description') else product.description
     product.category_id = data['category_id'] if data.get(
         'category_id') else product.category_id
+    product.image = data['image'] if data.get(
+        'image') else product.image
 
     db.session.commit()
 
