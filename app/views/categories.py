@@ -15,7 +15,6 @@ bp = Blueprint('categories', __name__)
 def categories():
 
     if request.method == 'POST':
-
         user_identity = get_jwt_identity()
 
         if user_identity is not None:
