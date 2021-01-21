@@ -18,6 +18,7 @@ def list_category():
         dict(
         id=category.id,
         name=category.name, 
+        image=category.image,
         link=f"category_list/{category.id}") 
         for category in response]
 

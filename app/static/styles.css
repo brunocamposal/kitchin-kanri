@@ -58,18 +58,20 @@ button{
 
 .content-category {
   margin-top: 140px;
-  height: 100%;
+  height: 500px;
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .content-products-category {
   margin-top: 100px;
-  height: 520px;
+  height: 500px;
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
 .content-product {
@@ -179,4 +181,15 @@ button{
 
 .product-message{
   margin-top: 20px;
+}
+
+.not-found-category{
+  margin-top: 50px;
+  text-align: center;
+}
+
+
+.not-found-product{
+  margin-bottom: 260px;
+  text-align: center;
 }
