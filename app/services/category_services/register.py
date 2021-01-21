@@ -7,7 +7,7 @@ from typing import Dict
 
 def register_category(data: Dict):
 
-    category = Category(name=data['name'])
+    category = Category(name=data['name'], image=data["image"])
 
     current_app.db.session.add(category)
     current_app.db.session.commit()

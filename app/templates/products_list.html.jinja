@@ -16,7 +16,9 @@
             <h5> Kitchin Kanri </h5>
         </div>
         {% if data|length == 0 %}
+        <div class="not-found-product"> 
             <h4> Essa categoria não possui produtos cadastrados!</h4>
+        </div>
         {%endif%}
         {%for product in data: %} 
             <a href="{{product.get("link")}}"> 

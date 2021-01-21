@@ -43,7 +43,7 @@ def login():
         email=request.get_json(force=True).get('email')).first()
 
     pwd_informed = user_found.password
-    pwd_db = request.get_json(force=True).get('pwd')
+    pwd_db = request.get_json(force=True).get('password')
 
     if pwd_informed != pwd_db:
 
@@ -69,7 +69,6 @@ def login():
 def get_fresh_token():
 
     user_id = get_jwt_identity()
-    print(user_id)
     access_token = create_access_token(
         identity=user_found.id, expires_delta=timedelta(days=5))
 

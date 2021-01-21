@@ -10,12 +10,11 @@ from flask import Blueprint, request, make_response
 bp = Blueprint('categories', __name__)
 
 
-@bp_categories.route('/categories', methods=['GET', 'POST'])
+@bp.route('/categories', methods=['GET', 'POST'])
 @jwt_optional
 def categories():
 
     if request.method == 'POST':
-
         user_identity = get_jwt_identity()
 
         if user_identity is not None:
@@ -28,7 +27,7 @@ def categories():
     return category_list()
 
   
-@bp_categories.route('/categories/<int:category_id>', methods=['DELETE', 'PATCH'])
+@bp.route('/categories/<int:category_id>', methods=['DELETE', 'PATCH'])
 @jwt_required
 def category(category_id):
     if request.method == 'DELETE':

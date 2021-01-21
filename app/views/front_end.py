@@ -18,6 +18,7 @@ def list_category():
         dict(
         id=category.id,
         name=category.name, 
+        image=category.image,
         link=f"category_list/{category.id}") 
         for category in response]
 
@@ -40,7 +41,7 @@ def list_category_id(category_id):
     return render_template("products_list.html.jinja", data=product_list)
 
 
-@bp_front_end.route('product/<int:product_id>', methods=['GET', 'POST'])
+@bp_front_end.route('product/<int:product_id>', methods=['GET'])
 def list_product_id(product_id):
 
     if request.method == 'GET':
@@ -57,3 +58,4 @@ def list_product_id(product_id):
             for product in response]
 
         return render_template("product.html.jinja", data=product)
+
