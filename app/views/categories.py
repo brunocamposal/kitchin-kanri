@@ -39,4 +39,4 @@ def category(category_id):
         return update_category(category_id, data)
 
     data = request.get_json()
-    return update_category(category_id, data)
+    return get_category(category_id)
