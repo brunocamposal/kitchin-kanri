@@ -16,7 +16,6 @@ bp_orders = Blueprint('api_orders', __name__, url_prefix='/orders')
 @bp_orders.route('', methods=['POST'])
 def create():
     data = request.get_json()
-    current_date = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     
     response = verify_product(data.get('products'))
 
@@ -25,7 +24,6 @@ def create():
 
     order = Order(
             status="Pedido pendente",
-            date=current_date,
             payment_method=data.get('payment_method'),
             total_price=total_price(data.get('products'))
         )

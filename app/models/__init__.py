@@ -2,6 +2,7 @@ from marshmallow import fields
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
+from datetime import datetime
 
 db = SQLAlchemy()
 ma = Marshmallow()
@@ -26,7 +27,7 @@ product_list = db.Table(
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(120), unique=False, nullable=False)
-    date = db.Column(db.DateTime, unique=False, nullable=True)
+    date = db.Column(db.DateTime, unique=False, nullable=False,  default=datetime.utcnow)
     total_price = db.Column(db.Float, unique=False, nullable=True)
     payment_method = db.Column(db.String(120), unique=False, nullable=True)
 

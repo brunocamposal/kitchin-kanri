@@ -8,10 +8,7 @@ from app.models import User, db
 from app.services.http import build_api_response
 
 
-bp_auth = Blueprint("bp_auth", __name__, url_prefix="/authentication")
-
-# encriptar senha com biblioteca do python
-# melhorar mensagem de user já existente
+bp_auth = Blueprint("api_auth", __name__, url_prefix="/auth")
 
 
 @bp_auth.route('/signup', methods=['POST'])

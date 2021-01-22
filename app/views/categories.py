@@ -27,7 +27,7 @@ def categories():
     return category_list()
 
   
-@bp.route('/categories/<int:category_id>', methods=['DELETE', 'PATCH'])
+@bp.route('/categories/<int:category_id>', methods=['GET','DELETE', 'PATCH'])
 @jwt_required
 def category(category_id):
     if request.method == 'DELETE':
