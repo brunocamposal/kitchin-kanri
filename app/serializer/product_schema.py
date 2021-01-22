@@ -8,4 +8,5 @@ class ProductSchema(ma.SQLAlchemySchema):
     name = ma.auto_field()
     price = ma.auto_field()
     description = ma.auto_field()
+    image = ma.auto_field()
     category_id = ma.auto_field()

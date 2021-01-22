@@ -90,6 +90,8 @@ def update_one_product(product_id: int):
     product.image = data['image'] if data.get(
         'image') else product.image
 
+
+    print(product.image)
     db.session.commit()
 
     return {
